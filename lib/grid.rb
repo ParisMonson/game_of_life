@@ -1,8 +1,20 @@
+# frozen_string_literal: true
+
 class Grid
   attr_accessor :multi_array
 
   def initialize(row, col)
     @multi_array = Array.new(row) { Array.new(col) { 0 } }
+  end
+  
+  def find_live_cells
+    live_cells = []
+    @multi_array.each_with_index do |sub_array, i|
+      sub_array.each_with_index do |value, j|
+          live_cells.push([i, j]) if value == 1
+      end
+    end
+    live_cells
   end
 
   def change_values(list_of_cells)
@@ -37,8 +49,8 @@ class Grid
     lower_vector = search_vectors[0]
     upper_vector = search_vectors[1]
     live_cells = 0
-    for x in(lower_vector[0]..upper_vector[0]) do
-      for y in(lower_vector[1]..upper_vector[1]) do
+    (lower_vector[0]..upper_vector[0]).each do |x|
+      (lower_vector[1]..upper_vector[1]).each do |y|
         live_cells += 1 if @multi_array[x][y] == 1
       end
     end
@@ -48,8 +60,8 @@ class Grid
   def generate_search_vectors(cell_location)
     max_index = @multi_array.length - 1
     lower_vector = [
-      (cell_location[0] > 0 ? (cell_location[0] - 1) : (cell_location[0])),
-      (cell_location[1] > 0 ? (cell_location[1] - 1) : (cell_location[1]))
+      ((cell_location[0]).positive? ? (cell_location[0] - 1) : (cell_location[0])),
+      ((cell_location[1]).positive? ? (cell_location[1] - 1) : (cell_location[1]))
     ]
     upper_vector = [
       (cell_location[0] < max_index ? (cell_location[0] + 1) : (cell_location[0])),

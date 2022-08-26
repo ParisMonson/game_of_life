@@ -79,5 +79,21 @@ RSpec.describe 'Grid' do
     end
     
   end
+  describe "Finds all live cells (cells with a value of 1)" do
+    it "finds the correct 3 live cells" do
+      grid = Grid.new(3, 3)
+      live_cells = [[0, 2], [1, 1], [2, 2]]
+      grid.change_values(live_cells)
+
+      live_cells = grid.find_live_cells
+      expect(live_cells.length).to eq(3)
+      expect(live_cells[0]).to eq([0, 2])
+      expect(live_cells[1]).to eq([1, 1])
+      expect(live_cells[2]).to eq([2, 2])
+
+
+    end
+
+  end
 
 end
