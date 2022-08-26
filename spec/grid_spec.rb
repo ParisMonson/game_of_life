@@ -44,10 +44,10 @@ RSpec.describe 'Grid' do
     end
   end
   describe "Finding values to change" do
-    it "keeps the correct cell alive, adding the other 3 to changes list" do
+    it "finds the correct 3 cells to change" do
       grid = Grid.new(3, 3)
-      alive_cells = [[0, 2], [1, 1], [2, 2]]
-      grid.change_values(alive_cells)
+      live_cells = [[0, 2], [1, 1], [2, 2]]
+      grid.change_values(live_cells)
 
       changes = grid.find_cells_to_change
       expect(changes.length).to eq(3)
@@ -55,6 +55,29 @@ RSpec.describe 'Grid' do
       expect(changes[1]).to eq([1, 2])
       expect(changes[2]).to eq([2, 2])
     end
+    it "finds the correct 2 cells to change" do
+      grid = Grid.new(3, 3)
+      live_cells = [[0, 0], [1, 1]]
+      grid.change_values(live_cells)
+
+      changes = grid.find_cells_to_change
+
+      expect(changes.length).to eq(2)
+      expect(changes[0]).to eq([0, 0])
+      expect(changes[1]).to eq([1, 1])
+    end
+    it "finds the correct 2 cells to change in larger grid" do
+      grid = Grid.new(10, 10)
+      live_cells = [[4, 4], [5, 5]]
+      grid.change_values(live_cells)
+
+      changes = grid.find_cells_to_change
+
+      expect(changes.length).to eq(2)
+      expect(changes[0]).to eq([4, 4])
+      expect(changes[1]).to eq([5, 5])
+    end
+    
   end
 
 end
