@@ -6,7 +6,7 @@ class Grid
   def initialize(row, col)
     @multi_array = Array.new(row) { Array.new(col) { 0 } }
   end
-  
+
   def find_live_cells
     live_cells = []
     @multi_array.each_with_index do |sub_array, i|

@@ -90,8 +90,19 @@ RSpec.describe 'Grid' do
       expect(live_cells[0]).to eq([0, 2])
       expect(live_cells[1]).to eq([1, 1])
       expect(live_cells[2]).to eq([2, 2])
+    end
+    it "finds the correct 5 live cells in big grid" do
+      grid = Grid.new(20, 20)
+      live_cells = [[4, 5], [7, 7], [14, 19], [17, 19], [3, 3]]
+      grid.change_values(live_cells)
 
-
+      live_cells = grid.find_live_cells
+      expect(live_cells.length).to eq(5)
+      expect(live_cells[0]).to eq([3, 3])
+      expect(live_cells[1]).to eq([4, 5])
+      expect(live_cells[2]).to eq([7, 7])
+      expect(live_cells[3]).to eq([14, 19])
+      expect(live_cells[4]).to eq([17, 19])
     end
 
   end
