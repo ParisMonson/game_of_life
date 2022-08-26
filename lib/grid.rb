@@ -27,7 +27,7 @@ class Grid
         end
       end
     end
-    return changes
+    changes
   end
 
   private
@@ -39,12 +39,10 @@ class Grid
     live_cells = 0
     for x in(lower_vector[0]..upper_vector[0]) do
       for y in(lower_vector[1]..upper_vector[1]) do
-        if @multi_array[x][y] == 1
-          live_cells += 1
-        end
+        live_cells += 1 if @multi_array[x][y] == 1
       end
     end
-    return @multi_array[cell_location[0]][cell_location[1]] == 1 ? (live_cells - 1) : live_cells
+    @multi_array[cell_location[0]][cell_location[1]] == 1 ? (live_cells - 1) : live_cells
   end
 
   def generate_search_vectors(cell_location)
@@ -57,6 +55,6 @@ class Grid
       (cell_location[0] < max_index ? (cell_location[0] + 1) : (cell_location[0])),
       (cell_location[1] < max_index ? (cell_location[1] + 1) : (cell_location[1]))
     ]
-    return [lower_vector, upper_vector]
+    [lower_vector, upper_vector]
   end
 end
