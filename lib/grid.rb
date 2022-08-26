@@ -11,7 +11,7 @@ class Grid
     live_cells = []
     @multi_array.each_with_index do |sub_array, i|
       sub_array.each_with_index do |value, j|
-          live_cells.push([i, j]) if value == 1
+        live_cells.push([i, j]) if value == 1
       end
     end
     live_cells
