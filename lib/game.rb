@@ -1,17 +1,19 @@
 class Game
-  def initialize(grid_object)
+  def initialize(grid_object, io=Kernel)
     @grid = grid_object
+    @io = io
   end
 
-  def game_tick
+  def run
     loop do
+      display_board
       changes = @grid.find_cells_to_change
-      @grid.change_values(changes)
       break if changes.empty?
-      display_game
+      @grid.change_values(changes)
     end
   end
-  def display_game
-    return nil
+  def display_board
+    live_cells = @grid.find_live_cells
+    @io.puts "#{live_cells}"
   end
 end

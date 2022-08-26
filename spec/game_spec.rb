@@ -6,10 +6,15 @@ RSpec.describe 'Game' do
     game = Game.new(grid_dbl)
     expect(game).to be_instance_of(Game)
   end
-  # xit "performs one game tick before quitting" do
-  #   grid_dbl = double :grid
-  #   allow(grid).to receive()
-  #   game = Game.new(grid)
-  #   expect(game).to be_instance_of(Game)
-  # end
+  it "performs one game tick before quitting" do
+    grid_dbl = double :grid
+    allow(grid_dbl).to receive(:find_live_cells).and_return([[0, 0], [1, 1]])
+    allow(grid_dbl).to receive(:find_cells_to_change).and_return([[0, 0], [1, 1]])
+    allow(grid_dbl).to receive(:change_values).with([[0, 0], [1, 1]])
+    allow(grid_dbl).to receive(:find_cells_to_change).and_return([])
+    io_dbl = double :io
+    expect(io_dbl).to receive(:puts).with("[[0, 0], [1, 1]]")
+    game = Game.new(grid_dbl, io_dbl)
+    game.run
+  end
 end
