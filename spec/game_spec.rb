@@ -6,7 +6,7 @@ RSpec.describe 'Game' do
     game = Game.new(grid_dbl)
     expect(game).to be_instance_of(Game)
   end
-  it "performs one game tick before quitting" do
+  it "performs two game tick before quitting" do
     grid_dbl = double :grid
     allow(grid_dbl).to receive(:find_live_cells).and_return([[0, 0], [1, 1]])
     allow(grid_dbl).to receive(:find_cells_to_change).and_return([[0, 0], [1, 1]])

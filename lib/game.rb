@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Game
-  def initialize(grid_object, io=Kernel)
+  def initialize(grid_object, io = Kernel)
     @grid = grid_object
     @io = io
   end
@@ -9,11 +11,13 @@ class Game
       display_board
       changes = @grid.find_cells_to_change
       break if changes.empty?
+
       @grid.change_values(changes)
     end
   end
+
   def display_board
     live_cells = @grid.find_live_cells
-    @io.puts "#{live_cells}"
+    @io.puts live_cells.to_s
   end
 end
