@@ -7,7 +7,7 @@ The aim of this project was to right code capable of calculating each new genera
 # Design:
 Two Class Approach
 
-I decided to use a two-dimensional grid as this allowed me two accuratley represent the grid structure that the game itself is based on. I created a 'Grid' class that could be initialised to a specific grid size with a arrangement of 'alive' cells. I used this class's methods to find the live cells and check which cells needed to be changed among other grid related tasks. 
+I decided to use a two-dimensional grid as this allowed me two accuratley represent the grid structure that the game itself is based on. I created a 'Grid' class that could be initialised to a specific grid size with an arrangement of 'alive' cells. I used this class's methods to find the live cells and check which cells needed to be changed among other grid related tasks. 
 
 The 'Game' class was simply used to run the actual program. It is initialised with a 'Grid' object and only has two methods. 'run' which changes the grids cells based on the "Game of Life" rules, and 'display_board' which simply prints an array of live cells after the changes.
 
