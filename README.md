@@ -1,4 +1,4 @@
-# Game of Life
+<h1 align="center">Game of Life</h1>
 
 The aim of this project was to right code capable of calculating each new generation in Conways [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
 
